@@ -1,4 +1,4 @@
-package org.simple.java;
+package org.wuzl.deeplearn.simple;
 
 /**
  * Hello world!

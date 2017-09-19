@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>org.wuzl</groupId>
-  <artifactId>simple-java</artifactId>
+  <artifactId>deeplearn-simple-java</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>simple-java</name>
   <url>http://maven.apache.org</url>
