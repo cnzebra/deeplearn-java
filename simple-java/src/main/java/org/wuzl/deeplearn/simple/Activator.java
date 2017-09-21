@@ -13,5 +13,5 @@ public interface Activator {
 	 * @param e
 	 * @return
 	 */
-	public double run(double e);
+	public double run(double input);
 }

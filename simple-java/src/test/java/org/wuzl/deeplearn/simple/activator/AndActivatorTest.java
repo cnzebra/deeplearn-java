@@ -7,10 +7,10 @@ import org.junit.Test;
 import org.wuzl.deeplearn.simple.Perceptron;
 
 /**
- * 测试and激活函数
+ * 测试线性
  * 
- * @author Administrator
- * 
+ * @author ziliang.wu
+ *
  */
 public class AndActivatorTest {
 	private Perceptron perceptron = new Perceptron(new AndActivator(), 2);
@@ -20,14 +20,10 @@ public class AndActivatorTest {
 		this.train();
 		// 验证
 		System.out.println(perceptron);
-		System.out.println("1 and 1 ="
-				+ perceptron.predict(new Double[] { 1.0, 1.0 }));
-		System.out.println("0 and 0 = "
-				+ perceptron.predict(new Double[] { 0.0, 0.0 }));
-		System.out.println("1 and 0 ="
-				+ perceptron.predict(new Double[] { 1.0, 0.0 }));
-		System.out.println("0 and 1 ="
-				+ perceptron.predict(new Double[] { 0.0, 1.0 }));
+		System.out.println("1 and 1 =" + perceptron.predict(new Double[] { 1.0, 1.0 }));
+		System.out.println("0 and 0 = " + perceptron.predict(new Double[] { 0.0, 0.0 }));
+		System.out.println("1 and 0 =" + perceptron.predict(new Double[] { 1.0, 0.0 }));
+		System.out.println("0 and 1 =" + perceptron.predict(new Double[] { 0.0, 1.0 }));
 	}
 
 	private void train() {
