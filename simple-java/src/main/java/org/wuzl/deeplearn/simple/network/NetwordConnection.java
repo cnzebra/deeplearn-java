@@ -9,12 +9,12 @@ import org.wuzl.deeplearn.simple.util.MathUtil;
  * 
  */
 public class NetwordConnection {
-	private final NetworkNode upNode;// 前节点
-	private final NetworkNode downNode;// 后节点
+	private final BaseNode upNode;// 前节点
+	private final BaseNode downNode;// 后节点
 	private double weight = MathUtil.random();// 权重
 	private double gradient = 0.0;// 梯度
 
-	public NetwordConnection(NetworkNode upNode, NetworkNode downNode) {
+	public NetwordConnection(BaseNode upNode, BaseNode downNode) {
 		this.upNode = upNode;
 		this.downNode = downNode;
 	}
@@ -38,11 +38,11 @@ public class NetwordConnection {
 		return gradient;
 	}
 
-	public NetworkNode getUpNode() {
+	public BaseNode getUpNode() {
 		return upNode;
 	}
 
-	public NetworkNode getDownNode() {
+	public BaseNode getDownNode() {
 		return downNode;
 	}
 

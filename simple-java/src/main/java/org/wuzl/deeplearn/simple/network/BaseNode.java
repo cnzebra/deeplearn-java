@@ -25,8 +25,40 @@ public abstract class BaseNode {
 		this.downConnectionList.add(connection);
 	}
 
+	public void setOutput(double output) {
+		this.output = output;
+	}
+
+	public int getLayerIndex() {
+		return layerIndex;
+	}
+
+	public int getNodeIndex() {
+		return nodeIndex;
+	}
+
+	public double getOutput() {
+		return output;
+	}
+
+	public double getDelta() {
+		return delta;
+	}
+
 	/**
 	 * 计算隐藏层误差
 	 */
 	public abstract void calcHiddenLayerDelta();
+
+	/**
+	 * 计算输出
+	 */
+	public abstract void calcOut();
+
+	/**
+	 * 添加下一节点
+	 * 
+	 * @param connection
+	 */
+	public abstract void appendUpConnection(NetwordConnection connection);
 }

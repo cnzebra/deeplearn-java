@@ -25,4 +25,48 @@ public class NetworkLayer {
 		nodeList.add(new ConstNode(layerIndex, nodeCount));
 	}
 
+	/**
+	 * 设置层的各个节点的输出
+	 * 
+	 * @param output
+	 */
+	public void setOutput(List<Double> outputList) {
+		if (outputList == null || outputList.isEmpty()) {
+			throw new RuntimeException("输出列表不可以为空");
+		}
+		if (outputList.size() != nodeList.size()) {
+			throw new RuntimeException("输出列表的个数必须等于节点的个数");
+		}
+		for (int i = 0; i < outputList.size(); i++) {
+			nodeList.get(i).setOutput(outputList.get(i));
+		}
+	}
+
+	/**
+	 * 计算输出
+	 */
+	public void calcOutput() {
+		for (BaseNode node : nodeList) {
+			node.calcOut();
+		}
+	}
+
+	public void dump() {
+		for (BaseNode node : nodeList) {
+			System.out.println(node);
+		}
+	}
+
+	public int getLayerIndex() {
+		return layerIndex;
+	}
+
+	public int getNodeCount() {
+		return nodeCount;
+	}
+
+	public List<BaseNode> getNodeList() {
+		return nodeList;
+	}
+
 }

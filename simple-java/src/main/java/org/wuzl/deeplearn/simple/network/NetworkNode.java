@@ -19,16 +19,12 @@ public class NetworkNode extends BaseNode {
 		super(layerIndex, nodeIndex);
 	}
 
-	// 设置节点输出
-	public void setOutput(double output) {
-		this.output = output;
-	}
-
 	/**
 	 * 添加一个上游连接
 	 * 
 	 * @param connection
 	 */
+	@Override
 	public void appendUpConnection(NetwordConnection connection) {
 		this.upConnectionList.add(connection);
 	}
@@ -36,10 +32,10 @@ public class NetworkNode extends BaseNode {
 	/**
 	 * 计算输出
 	 */
+	@Override
 	public void calcOut() {
 		for (NetwordConnection connection : upConnectionList) {
-			output += (connection.getUpNode().getOutput() * connection
-					.getWeight());
+			output += (connection.getUpNode().getOutput() * connection.getWeight());
 		}
 		this.output = MathUtil.sigmoid(output);
 	}
@@ -48,34 +44,16 @@ public class NetworkNode extends BaseNode {
 	public void calcHiddenLayerDelta() {
 		double downCountDelta = 0.0;
 		for (NetwordConnection connection : downConnectionList) {
-			downCountDelta += (connection.getDownNode().getDelta() * connection
-					.getWeight());
+			downCountDelta += (connection.getDownNode().getDelta() * connection.getWeight());
 		}
 		this.delta = output * (1 - output) * downCountDelta;
 	}
 
-	public double getOutput() {
-		return output;
-	}
-
-	public double getDelta() {
-		return delta;
-	}
-
 	@Override
 	public String toString() {
-		return "NetworkNode [layerIndex=" + layerIndex + ", nodeIndex="
-				+ nodeIndex + ", downConnectionList=" + downConnectionList
-				+ ", upConnectionList=" + upConnectionList + ", output="
-				+ output + ", delta=" + delta + "]";
-	}
-
-	public int getLayerIndex() {
-		return layerIndex;
-	}
-
-	public int getNodeIndex() {
-		return nodeIndex;
+		return "NetworkNode [layerIndex=" + layerIndex + ", nodeIndex=" + nodeIndex + ", downConnectionList="
+				+ downConnectionList + ", upConnectionList=" + upConnectionList + ", output=" + output + ", delta="
+				+ delta + "]";
 	}
 
 	public List<NetwordConnection> getDownConnectionList() {
