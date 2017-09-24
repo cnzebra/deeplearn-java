@@ -50,6 +50,12 @@ public class NetworkNode extends BaseNode {
 	}
 
 	@Override
+	public void calcOutputLayerDelta(double label) {
+		this.delta = this.output * (1 - this.output) * (label - this.output);
+
+	}
+
+	@Override
 	public String toString() {
 		return "NetworkNode [layerIndex=" + layerIndex + ", nodeIndex=" + nodeIndex + ", downConnectionList="
 				+ downConnectionList + ", upConnectionList=" + upConnectionList + ", output=" + output + ", delta="

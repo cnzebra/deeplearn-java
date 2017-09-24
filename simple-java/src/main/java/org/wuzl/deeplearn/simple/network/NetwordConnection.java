@@ -8,6 +8,10 @@ import org.wuzl.deeplearn.simple.util.MathUtil;
  * @author ziliang.wu
  * 
  */
+/**
+ * @author Administrator
+ *
+ */
 public class NetwordConnection {
 	private final BaseNode upNode;// 前节点
 	private final BaseNode downNode;// 后节点
@@ -34,6 +38,10 @@ public class NetwordConnection {
 		this.weight += (rate * gradient);
 	}
 
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
 	public double getGradient() {
 		return gradient;
 	}
@@ -52,12 +60,10 @@ public class NetwordConnection {
 
 	@Override
 	public String toString() {
-		return "NetwordConnection [upNode.layer_index="
-				+ upNode.getLayerIndex() + ", upNode.node_index="
-				+ upNode.getNodeIndex() + ", downNode.layer_index="
-				+ downNode.getLayerIndex() + ", downNode.node_index="
-				+ downNode.getNodeIndex() + ", weight=" + weight
-				+ ", gradient=" + gradient + "]";
+		return "NetwordConnection [upNode.layer_index=" + upNode.getLayerIndex() + ", upNode.node_index="
+				+ upNode.getNodeIndex() + ", downNode.layer_index=" + downNode.getLayerIndex()
+				+ ", downNode.node_index=" + downNode.getNodeIndex() + ", weight=" + weight + ", gradient=" + gradient
+				+ "]";
 	}
 
 }

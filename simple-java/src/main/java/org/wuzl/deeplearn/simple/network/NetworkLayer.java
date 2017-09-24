@@ -34,9 +34,9 @@ public class NetworkLayer {
 		if (outputList == null || outputList.isEmpty()) {
 			throw new RuntimeException("输出列表不可以为空");
 		}
-		if (outputList.size() != nodeList.size()) {
-			throw new RuntimeException("输出列表的个数必须等于节点的个数");
-		}
+//		if (outputList.size() != nodeList.size()) {
+//			throw new RuntimeException("输出列表的个数必须等于节点的个数");
+//		}
 		for (int i = 0; i < outputList.size(); i++) {
 			nodeList.get(i).setOutput(outputList.get(i));
 		}
@@ -46,12 +46,12 @@ public class NetworkLayer {
 	 * 计算输出
 	 */
 	public void calcOutput() {
-		for (BaseNode node : nodeList) {
-			node.calcOut();
+		for(int i=0;i<nodeList.size()-1;i++) {
+			nodeList.get(i).calcOut();
 		}
 	}
 
-	public void dump() {
+	public void print() {
 		for (BaseNode node : nodeList) {
 			System.out.println(node);
 		}

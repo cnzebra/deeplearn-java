@@ -7,6 +7,7 @@ package org.wuzl.deeplearn.simple.network;
  * 
  */
 public class ConstNode extends BaseNode {
+	double output = 1.0;
 
 	public ConstNode(int layerIndex, int nodeIndex) {
 		super(layerIndex, nodeIndex);
@@ -39,6 +40,20 @@ public class ConstNode extends BaseNode {
 	public void appendUpConnection(NetwordConnection connection) {
 		// 不用实现
 
+	}
+
+	@Override
+	public void calcOutputLayerDelta(double label) {
+
+	}
+
+	@Override
+	public void setOutput(double output) {
+	}
+
+	@Override
+	public double getOutput() {
+		return output;
 	}
 
 }

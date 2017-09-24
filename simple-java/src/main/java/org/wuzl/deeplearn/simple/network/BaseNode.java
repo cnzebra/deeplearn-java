@@ -51,6 +51,11 @@ public abstract class BaseNode {
 	public abstract void calcHiddenLayerDelta();
 
 	/**
+	 * 计算输出层误差
+	 */
+	public abstract void calcOutputLayerDelta(double label);
+
+	/**
 	 * 计算输出
 	 */
 	public abstract void calcOut();
