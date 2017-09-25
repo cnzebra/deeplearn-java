@@ -16,13 +16,22 @@ public class MnistMain {
 	private final List<List<Double>> imageInput;
 	private final List<List<Double>> labelList;
 	// 三层网络
-	private static final Network network = new Network(Lists.newArrayList(784, 100, 10));
+	private static final Network network = new Network(Lists.newArrayList(784, 300, 10));
 
 	public MnistMain(int trainCount, int testCount) {
-		this.imageLoader = new MnistImageLoader("D:/测试数据/MNIST/train-images.idx3-ubyte", trainCount);
-		this.labelLoader = new MnistLabelLoader("D:/测试数据/MNIST/train-labels.idx1-ubyte", trainCount);
-		this.testImageLoader = new MnistImageLoader("D:/测试数据/MNIST/t10k-images.idx3-ubyte", testCount);
-		this.testLabelLoader = new MnistLabelLoader("D:/测试数据/MNIST/t10k-labels.idx1-ubyte", testCount);
+		// this.imageLoader = new
+		// MnistImageLoader("D:/测试数据/MNIST/train-images.idx3-ubyte", trainCount);
+		// this.labelLoader = new
+		// MnistLabelLoader("D:/测试数据/MNIST/train-labels.idx1-ubyte", trainCount);
+		// this.testImageLoader = new
+		// MnistImageLoader("D:/测试数据/MNIST/t10k-images.idx3-ubyte", testCount);
+		// this.testLabelLoader = new
+		// MnistLabelLoader("D:/测试数据/MNIST/t10k-labels.idx1-ubyte", testCount);
+		this.imageLoader = new MnistImageLoader("F:/data/MNIST/train-images.idx3-ubyte", trainCount);
+		this.labelLoader = new MnistLabelLoader("F:/data/MNIST/train-labels.idx1-ubyte", trainCount);
+		this.testImageLoader = new MnistImageLoader("F:/data/MNIST/t10k-images.idx3-ubyte", testCount);
+		this.testLabelLoader = new MnistLabelLoader("F:/data/MNIST/t10k-labels.idx1-ubyte", testCount);
+
 		imageInput = testImageLoader.load();
 		labelList = testLabelLoader.load();
 	}
