@@ -38,17 +38,17 @@ public class Network {
 	 *            训练样本标签。每个元素是一个样本的标签。
 	 * @param rate
 	 *            频率
-	 * @param iteration
+	 * @param epoch
 	 *            训练总次数
 	 */
-	public void train(List<List<Double>> inputs, List<List<Double>> labels, double rate, int iteration) {
+	public void train(List<List<Double>> inputs, List<List<Double>> labels, double rate, int epoch) {
 		if (inputs == null || labels == null || inputs.isEmpty()) {
 			throw new RuntimeException("输入数据和结果不可以为空");
 		}
 		if (inputs.size() != labels.size()) {
 			throw new RuntimeException("输入数据和结果数量不一致");
 		}
-		for (int i = 0; i < iteration; i++) {
+		for (int i = 0; i < epoch; i++) {
 			for (int j = 0; j < inputs.size(); j++) {
 				predict(inputs.get(j));
 				calcDelta(labels.get(j));

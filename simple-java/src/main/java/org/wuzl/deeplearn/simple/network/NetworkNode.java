@@ -34,10 +34,11 @@ public class NetworkNode extends BaseNode {
 	 */
 	@Override
 	public void calcOut() {
+		double newOut = 0.0;
 		for (NetwordConnection connection : upConnectionList) {
-			output += (connection.getUpNode().getOutput() * connection.getWeight());
+			newOut += (connection.getUpNode().getOutput() * connection.getWeight());
 		}
-		this.output = MathUtil.sigmoid(output);
+		this.output = MathUtil.sigmoid(newOut);
 	}
 
 	@Override
@@ -73,5 +74,4 @@ public class NetworkNode extends BaseNode {
 	public void setDelta(double delta) {
 		this.delta = delta;
 	}
-
 }
