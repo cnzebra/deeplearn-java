@@ -15,8 +15,8 @@ import org.wuzl.deeplearn.simple.util.MathUtil;
 public class NetwordConnection {
 	private final BaseNode upNode;// 前节点
 	private final BaseNode downNode;// 后节点
-//	private double weight = MathUtil.random();// 权重
-	private double weight = -0.02823934916405911;// 权重
+	private double weight = MathUtil.random();// 权重
+//	private double weight = -0.02823934916405911;// 权重
 	private double gradient = 0.0;// 梯度
 
 	public NetwordConnection(BaseNode upNode, BaseNode downNode) {
