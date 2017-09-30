@@ -8,32 +8,40 @@ import org.wuzl.deeplearn.simple.util.TimeUtil;
 
 import com.google.common.collect.Lists;
 
+/**
+ * 计算失败 网络梯度测试没问题但计算不成功 失败率太高
+ * 
+ * @author ziliang.wu
+ *
+ */
 public class MnistMain {
 	private final MnistImageLoader imageLoader;
 	private final MnistLabelLoader labelLoader;
 	private final MnistImageLoader testImageLoader;
 	private final MnistLabelLoader testLabelLoader;
-	private final List<List<Double>> imageInput;
-	private final List<List<Double>> labelList;
+	private final List<List<Double>> testImageInput;
+	private final List<List<Double>> testLabelList;
 	// 三层网络
-	private static final Network network = new Network(Lists.newArrayList(784, 300, 10));
+	private static final Network network = new Network(Lists.newArrayList(784, 100, 10));
 
 	public MnistMain(int trainCount, int testCount) {
+		this.imageLoader = new MnistImageLoader("D:/测试数据/MNIST/train-images.idx3-ubyte", trainCount);
+		this.labelLoader = new MnistLabelLoader("D:/测试数据/MNIST/train-labels.idx1-ubyte", trainCount);
+		this.testImageLoader = new MnistImageLoader("D:/测试数据/MNIST/t10k-images.idx3-ubyte", testCount);
+		this.testLabelLoader = new MnistLabelLoader("D:/测试数据/MNIST/t10k-labels.idx1-ubyte", testCount);
 		// this.imageLoader = new
-		// MnistImageLoader("D:/测试数据/MNIST/train-images.idx3-ubyte", trainCount);
+		// MnistImageLoader("F:/data/MNIST/train-images.idx3-ubyte",
+		// trainCount);
 		// this.labelLoader = new
-		// MnistLabelLoader("D:/测试数据/MNIST/train-labels.idx1-ubyte", trainCount);
+		// MnistLabelLoader("F:/data/MNIST/train-labels.idx1-ubyte",
+		// trainCount);
 		// this.testImageLoader = new
-		// MnistImageLoader("D:/测试数据/MNIST/t10k-images.idx3-ubyte", testCount);
+		// MnistImageLoader("F:/data/MNIST/t10k-images.idx3-ubyte", testCount);
 		// this.testLabelLoader = new
-		// MnistLabelLoader("D:/测试数据/MNIST/t10k-labels.idx1-ubyte", testCount);
-		this.imageLoader = new MnistImageLoader("F:/data/MNIST/train-images.idx3-ubyte", trainCount);
-		this.labelLoader = new MnistLabelLoader("F:/data/MNIST/train-labels.idx1-ubyte", trainCount);
-		this.testImageLoader = new MnistImageLoader("F:/data/MNIST/t10k-images.idx3-ubyte", testCount);
-		this.testLabelLoader = new MnistLabelLoader("F:/data/MNIST/t10k-labels.idx1-ubyte", testCount);
+		// MnistLabelLoader("F:/data/MNIST/t10k-labels.idx1-ubyte", testCount);
 
-		imageInput = testImageLoader.load();
-		labelList = testLabelLoader.load();
+		testImageInput = testImageLoader.load();
+		testLabelList = testLabelLoader.load();
 	}
 
 	/**
@@ -44,9 +52,9 @@ public class MnistMain {
 	public double evaluate() {
 		int error = 0;
 		System.out.println("开始测试，当前时间:" + TimeUtil.getNowTime());
-		for (int i = 0; i < imageInput.size(); i++) {
-			List<Double> input = imageInput.get(i);
-			int rightLabel = MnistLabelLoader.getResult(labelList.get(i));
+		for (int i = 0; i < testImageInput.size(); i++) {
+			List<Double> input = testImageInput.get(i);
+			int rightLabel = MnistLabelLoader.getResult(testLabelList.get(i));
 			int predict = MnistLabelLoader.getResult(network.predict(input));
 			if (rightLabel != predict) {
 				error++;
@@ -54,7 +62,7 @@ public class MnistMain {
 
 		}
 		System.out.println("测试完毕，当前时间:" + TimeUtil.getNowTime());
-		return (error + 0.0) / imageInput.size();
+		return (error + 0.0) / testImageInput.size();
 	}
 
 	public void trainAndEvaluate() {
@@ -65,7 +73,7 @@ public class MnistMain {
 		System.out.println("开始训练，当前时间:" + TimeUtil.getNowTime());
 		while (true) {
 			epoch++;
-			network.train(imageInput, label, 0.3, 1);
+			network.train(imageInput, label, 0.01, 1);
 			System.out.println("第" + epoch + "轮训练结束，当前时间:" + TimeUtil.getNowTime());
 			if (epoch % 5 == 0) {
 				double errorRatio = evaluate();
