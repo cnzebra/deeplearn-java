@@ -21,6 +21,7 @@ public interface NetworkActivator {
 	 * 反向传播算法
 	 * 
 	 * @param out
+	 *            实际是当前层的向量 上一层的输出
 	 * @return
 	 */
 	public INDArray backward(INDArray out);

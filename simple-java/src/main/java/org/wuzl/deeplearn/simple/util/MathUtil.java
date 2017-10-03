@@ -4,8 +4,7 @@ import java.util.Random;
 
 public class MathUtil {
 	public static double random() {
-		return new Random().nextInt(10) / 100.0
-				* (Math.random() > 0.5 ? 1 : -1);
+		return new Random().nextInt(10) / 100.0 * (Math.random() > 0.5 ? 1 : -1);
 	}
 
 	public static double sigmoid(double input) {
